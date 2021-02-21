@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Vue Js - HelloWorld App</title>
+
+  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+  <!-- Using via Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- https://tailwindcss.com/docs/installation -->
+  <!-- Using Tailwind via CDN -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+
+<body class="bg-indigo-300">
+  <section id="app" class="overflow-hidden text-black body-font ">
+    <p class="font-sans md:font-serif tracking-wide mx-auto font-bold text-3xl pt-7 m-3 text-center">Photo Gallery ({{ countPic
+        }})</p>
+
+        <div class="flex flex-wrap justify-center">
+            <input type="text" placeholder="input something" v-model="task" @keyup="checkTask" class="font-sans md:font-serif tracking-wide  font-bold text-3xl pt-7 m-3 h-16"><button class="font-sans md:font-serif tracking-wide text-center text-white bg-red-600 font-bold text-3xl pt-7 m-3 h-16" v-on:click="allShow">cancel</button>
+        </div>
+            <div v-show="focus" class="bg-black w-full ">
+                 <div class="flex flex-col">
+                    <div>
+                        <span class="material-icons text text-white flex justify-end cursor-pointer" v-on:click="quit">disabled_by_default</span>
+                    </div> 
+                    <div class="flex justify-center">
+                    <img :src="Gallery[cindex].images" class="object-cover object-center w-2/6 h-64 rounded-lg lg:h-auto group-hover:opacity-70 "> 
+                </div> 
+            </div>
+            </div>
+
+    <div class="container px-5 py-2 mx-auto lg:px-32">
+        <div class="flex flex-wrap justify-center mx-auto ">
+            <div class="group w-full mt-6 lg:w-2/6 lg:pl-10 lg:py-6 lg:mt-0" v-for="(photo,index) in Gallery" v-show="photo.show">
+                <img :src="photo.images"  v-on:click="click(index)" @dblclick="doubleclick(index)"
+                    class="object-cover object-center w-full h-64 rounded-lg lg:h-auto group-hover:opacity-70 "
+                    >
+                <div class="flex flex-col items-start mx-auto mt-8 sm:flex-row sm:items-center">
+                    <h1
+                        class="font-sans md:font-serif font-semibold tracking-wide flex-grow mb-2 text-2xl font-medium tracking-tighter text-gray-900 title-font">
+                        {{photo.name}}
+                    </h1>
+                    <span class="inline-flex">
+                        <a
+                            class="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-gradient-to-r">
+                            <i xmlns="http://www.w3.org/2000/svg" v-show="photo.done"
+                                class="material-icons text-red-500 icon icon-tabler icon-tabler-chevron-right " width="24"
+                                height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <polyline points="9 6 15 12 9 18" />favorite
+                            </i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+  <!-- my main.js -->
+  <script src="./main.js"></script>
+</body>
+
+</html>
